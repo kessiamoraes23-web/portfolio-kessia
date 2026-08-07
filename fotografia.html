@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Késsia Moraes</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+        <div class="logo">
+            <h2>Késsia Moraes</h2>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#projetos">Projetos</a></li>
+                <li><a href="index.html#contato">Contato</a></li>
+                <li><a href="index.html#sobre" class="btn-conheca">Me conheça</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+<section class="banner-foto">
+
+    <div class="banner-texto">
+
+        <h1>Portfólio</h1>
+
+        <h2>Fotografia</h2>
+
+        <p>
+            Retratos, gastronomia, lifestyle e fotografia comercial.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="galeria" id="galeria">
+
+<h3>Gastronomia</h3>
+
+<div class="grid-fotos">
+
+<img src="imagens/PÃO.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Prato.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Torta.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Torta 2.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Torta doce.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Torta doce 2.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Retrato.jpg" onclick="abrirImagem(this)">
+
+</div>
+
+<h3>Retratos</h3>
+
+<div class="grid-fotos">
+
+<img src="imagens/Kimberly 1.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Kimberly 9.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Kimberly 7.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Kimberly 5.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Kimberly 12.jpg" onclick="abrirImagem(this)">
+<img src="imagens/Kimberly 2.jpg" onclick="abrirImagem(this)">
+
+
+</div>
+
+<h3>Moda</h3>
+
+<div class="grid-fotos">
+
+<img src="imagens/moda 1.jpg"onclick="abrirImagem(this)">
+<img src="imagens/moda 2.jpg"onclick="abrirImagem(this)">
+<img src="imagens/moda 3.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Saia 2.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Saia.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Croche 2.jpg"onclick="abrirImagem(this)">
+<img src="imagens/Croche.jpg"onclick="abrirImagem(this)">
+
+</div>
+
+</section>
+
+
+<!-- ================= RODAPÉ ================= -->
+
+<footer>
+
+    <h2>
+        Creating visual experiences.
+    </h2>
+
+    <div class="footer-links">
+
+        <a href="#">Home</a>
+        <a href="#">Projetos</a>
+        <a href="#">Sobre</a>
+        <a href="#">Contato</a>
+
+    </div>
+
+    <div class="redes">
+
+        <a href="https://instagram.com/SEUUSUARIO" target="_blank">
+            <img src="imagens/instagram.png" alt="Instagram">
+        </a>
+
+        <a href="https://wa.me/5544988152777" target="_blank">
+            <img src="imagens/whatsapp.png" alt="WhatsApp">
+        </a>
+
+        <a href="mailto:seuemail@email.com">
+            <img src="imagens/email.png" alt="Email">
+        </a>
+
+    </div>
+
+    <p>
+        Designed & Developed by Késsia Moraes © 2026
+    </p>
+
+</footer>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox">
+    <span class="fechar">&times;</span>
+    <span class="anterior">&#10094;</span>
+    <img id="img-ampliada" alt="Imagem ampliada">
+    <span class="proximo">&#10095;</span>
+
+</div>
+
+<script>
+    
+const lightbox = document.getElementById("lightbox");
+const imagem = document.getElementById("img-ampliada");
+const fotos = document.querySelectorAll(".grid-fotos img");
+let indice = 0;
+function abrirImagem(img){
+    indice = Array.from(fotos).indexOf(img);
+    imagem.src = fotos[indice].src;
+    lightbox.style.display = "flex";
+}
+
+function mostrarImagem(){
+    imagem.src = fotos[indice].src;
+}
+
+document.querySelector(".proximo").onclick = function(){
+    indice++;
+    if(indice >= fotos.length){
+        indice = 0;
+    }
+
+    mostrarImagem();
+}
+
+document.querySelector(".anterior").onclick = function(){
+    indice--;
+    if(indice < 0){
+        indice = fotos.length - 1;
+    }
+
+    mostrarImagem();
+}
+
+document.querySelector(".fechar").onclick = function(){
+    lightbox.style.display = "none";
+}
+
+lightbox.onclick = function(e){
+    if(e.target === lightbox){
+        lightbox.style.display = "none";
+    }
+
+}
+
+document.addEventListener("keydown", function(e){
+    if(lightbox.style.display !== "flex") return;
+    if(e.key === "ArrowRight"){
+        document.querySelector(".proximo").click();
+    }
+
+    if(e.key === "ArrowLeft"){
+        document.querySelector(".anterior").click();
+    }
+
+    if(e.key === "Escape"){
+        lightbox.style.display = "none";
+    }
+
+});
+
+</script>
+
+</body>
+</html>
+
