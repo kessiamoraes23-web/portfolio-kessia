@@ -138,6 +138,11 @@ header nav ul li a.btn-conheca:hover {
     background:#C33B80;
 }
 
+html,
+body {
+    overflow-x: hidden;
+}
+
 /* ================= PROJETOS ================= */
 
 .projetos{
